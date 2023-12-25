@@ -14,6 +14,16 @@ $ conda activate LNPs
 # install requirements
 $ pip install torch==2.0.0 torchvision==0.15.1 torchaudio==2.0.1
 $ pip install -r requirements.txt
+#Download pretrained weights and finetune weights
+$ git clone https://github.com/wklix/LNPs.git
+$ cd ./LNPs
+$ wget https://github.com/wklix/LNPs/releases/download/v1.0/mol_pre_all_h_220816.pt
+$ wget https://github.com/wklix/LNPs/releases/download/v1.0/mol_pre_no_h_220816.pt
+$ mv *.pt weights/
+$ wget https://github.com/wklix/LNPs/releases/download/v1.0/LDS.zip
+$ wget https://github.com/wklix/LNPs/releases/download/v1.0/FDS.zip
+$ unzip LDS.zip -d ./dataset/Random
+$ unzip FDS.zip -d ./dataset/Scaffold
 ```
 ### Training
 
