@@ -5,8 +5,7 @@ clf = MolTrain(task='regression',
                 learning_rate=0.00005,
                 batch_size=4,
                 early_stopping=5,
-                split='random',
-                save_path='./old/draw_fds',
+                save_path='./random_LDS',
                 remove_hs=True,
               )
-clf.fit('./train.csv')
+clf.fit('./dataset/Random/train.csv')
