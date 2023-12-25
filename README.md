@@ -27,14 +27,14 @@ $ unzip FDS.zip -d ./dataset/Scaffold
 ```
 ### Training
 
-You can choose between two data splittingmethods: random and scaffold. The corresponding data is located in  `./dataset`. Our dataset is from [AGILE](https://github.com/bowang-lab/AGILE). If you want to select the random data splittingmethod, please go to line 19 in `./tasks/split.py` and comment out line 20. On the other hand, if you want to choose the scaffold data splitting method, please go to line 20 in `./tasks/split.py` and comment out line 19.
+You can choose between two data splitting methods: random and scaffold. The corresponding data is located in  `./dataset`. Our dataset is from [AGILE](https://github.com/bowang-lab/AGILE). If you want to select the random data splittingmethod, please go to line 19 in `./tasks/split.py` and comment out line 20. On the other hand, if you want to choose the scaffold data splitting method, please go to line 20 in `./tasks/split.py` and comment out line 19.
 
 ```
 19 self.split_method = split_method    #random
 20 self.split_method = '5fold_scaffold'  #scaffold
 ```
 
-We have employed two data balancing techniques: label data smoothing (LDS) and molecular feature data smoothing (FDS). 
+We have employed two data balancing : label distribution smoothing (LDS) and molecular feature distribution smoothing (FDS). 
 
 If you want to use LDS, please add the 'weight' variable at line 132 in `./tasks/trainer.py`. Otherwise, remove the 'weight' variable. It is already included by default.
 
@@ -52,7 +52,7 @@ If you want to use FDS, please follow these steps:
    166 	cls_repr = self.FDS.smooth(cls_repr1, labels, epoch) 
    ```
    
-2. In './tasks/trainer.py', uncomment lines 165-166.
+2. In `./tasks/trainer.py`', uncomment lines 165-166.
 
    ```
    165 model.FDS.update_last_epoch_stats(epoch)
@@ -62,7 +62,7 @@ If you want to use FDS, please follow these steps:
 After the above selections have been made, you can proceed with model training:
 
 ```
-./dataset/Random/train.csv is the path of dataset
+# ./dataset/Random/train.csv is the path of dataset
 $ python train_model.py ./dataset/Random/train.csv
 ```
 
