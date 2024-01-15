@@ -1,5 +1,13 @@
 # Data-Balanced Transformer for Accelerated LNP Screening in mRNA Delivery
 
+## TransLNP
+
+TransLNP is a Transformer-based model for predicting LNP transfection efficiency.
+
+An overview of TransLNP can be seen below:
+
+![](.\figure\figure1.png)
+
 ## Getting Started
 
 ### Installation
