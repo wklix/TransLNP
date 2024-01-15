@@ -6,7 +6,7 @@ TransLNP is a Transformer-based model for predicting LNP transfection efficiency
 
 An overview of TransLNP can be seen below:
 
-![](.\figure\figure1.png)
+![](./figure/figure1.png)
 
 ## Getting Started
 
