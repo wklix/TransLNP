@@ -1,4 +1,4 @@
-# Data-Balanced Transformer for Accelerated LNP Screening in mRNA Delivery
+# Data-Balanced Transformer for Accelerated LNPs Screening in mRNA Delivery
 
 ## TransLNP
 
