@@ -2,7 +2,7 @@
 
 ## TransLNP
 
-TransLNP is a Transformer-based model for predicting LNP transfection efficiency.
+TransLNP is a Transformer-based model for predicting LNPs transfection efficiency.
 
 An overview of TransLNP can be seen below:
 
