@@ -15,3 +15,5 @@ tensorboardX==2.6.2.2
 tokenizers==0.13.3
 sklearn==0.0
 skunk==1.2.0
+umap-learn==0.5.3
+seaborn

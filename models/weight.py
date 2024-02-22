@@ -24,12 +24,12 @@ def get_lds_kernel_window(kernel, ks, sigma):
 
     return kernel_window
 
-def weighted_mse_loss():
-    args = sys.argv[1:]
-    csv_file = args[0]
+def weighted_mse_loss(df):
+    #args = sys.argv[1:]
+    #csv_file = args[0]
     #logging.info(f"Using FDS for [{csv_file}]!")
-    df = pd.read_csv(csv_file, header=0, usecols=[1])
-    labels = df.iloc[:, 0].tolist()
+    #df = pd.read_csv(csv_file, header=0, usecols=[1])
+    labels = df.iloc[:, 1].tolist()
     labels = np.asarray(labels)
     _mean, _std =labels.mean(), labels.std()
     labels = labels[(labels> _mean - 3 * _std) & (labels < _mean + 3 * _std)]

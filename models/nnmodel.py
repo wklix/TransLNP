@@ -100,7 +100,7 @@ class NNModel(object):
             raise ValueError('X must be numpy array or dict')
 
     def run(self):
-        weights = weighted_mse_loss()
+        weights = weighted_mse_loss(self.data['raw_data'])
         logger.info("start training Uni-Mol:{}".format(self.model_name))
         X = np.asarray(self.features)
         y = np.asarray(self.data['target'])
@@ -165,20 +165,25 @@ class NNModel(object):
             os.makedirs(dir)
         joblib.dump(data, path)
 
-    def evaluate(self, trainer=None,  checkpoints_path=None):
+    def evaluate(self, trainer=None,  checkpoints_path=None, visual=True):
         logger.info("start predict NNModel:{}".format(self.model_name))
         testdataset = NNDataset(self.features, np.asarray(self.data['target']))
         for fold in range(self.splitter.n_splits):
             model_path = os.path.join(checkpoints_path, f'model_{fold}.pth')
             self.model.load_state_dict(torch.load(
                 model_path, map_location=self.trainer.device)['model_state_dict'])
-            _y_pred, _, __ = trainer.predict(self.model, testdataset, self.loss_func, self.activation_fn,
+            _y_pred, _, __,encodings,y_truths  = trainer.predict(self.model, testdataset, self.loss_func, self.activation_fn,
                             self.save_path, fold, self.target_scaler, epoch=1, load_model=True)
             if fold == 0:
                 y_pred = np.zeros_like(_y_pred)
             y_pred += _y_pred
         y_pred /= self.splitter.n_splits
+        scalar = self.data['target_scaler']
+        y_prediction = scalar.inverse_transform(y_pred)
+        df = self.data['raw_data'].copy()
         self.cv['test_pred'] = y_pred
+        if visual == True:
+            return y_prediction, encodings,y_truths
 
     def count_parameters(self, model):
         return sum(p.numel() for p in model.parameters() if p.requires_grad)

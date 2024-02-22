@@ -164,7 +164,7 @@ class Trainer(object):
                                 torch.from_numpy(np.hstack(labels1)).cuda(0)
             #model.FDS.update_last_epoch_stats(epoch)
             #model.FDS.update_running_stats(encodings, labels1, epoch)
-            y_preds, val_loss, metric_score = self.predict(
+            y_preds, val_loss, metric_score ,_,_= self.predict(
                 model, valid_dataset, loss_func, activation_fn, dump_dir, fold, target_scaler, epoch, load_model=False, feature_name=feature_name)
             end_time = time.time()
             total_val_loss = np.mean(val_loss)
@@ -182,7 +182,7 @@ class Trainer(object):
             if is_early_stop:
                 break
 
-        y_preds, _, _ = self.predict(model, valid_dataset, loss_func, activation_fn,
+        y_preds, _, _ ,_,_= self.predict(model, valid_dataset, loss_func, activation_fn,
                                      dump_dir, fold, target_scaler, epoch, load_model=True, feature_name=feature_name)
         return y_preds
 
@@ -234,6 +234,7 @@ class Trainer(object):
         val_loss = []
         y_preds = []
         y_truths = []
+        encodings = []
         for i, batch in enumerate(dataloader):
             net_input, net_target,_ = self.decorate_batch(batch, feature_name)
             # Get model outputs
@@ -244,6 +245,7 @@ class Trainer(object):
                     val_loss.append(float(loss.data))
             y_preds.append(activation_fn(outputs).cpu().numpy())
             y_truths.append(net_target.detach().cpu().numpy())
+            encodings.extend(cls_repr1.cpu().detach().numpy())
             if not load_model:
                 batch_bar.set_postfix(
                     Epoch="Epoch {}/{}".format(epoch+1, self.max_epochs),
@@ -252,6 +254,7 @@ class Trainer(object):
             batch_bar.update()
         y_preds = np.concatenate(y_preds)
         y_truths = np.concatenate(y_truths)
+        encodings = np.array(encodings)
 
         try:
             label_cnt = model.output_dim
@@ -267,7 +270,8 @@ class Trainer(object):
             metric_score = self.metrics.cal_metric(
                 y_truths, y_preds, label_cnt=label_cnt) if not load_model else None
         batch_bar.close()
-        return y_preds, val_loss, metric_score
+        #return y_preds, val_loss, metric_score
+        return y_preds, val_loss, metric_score, encodings,y_truths
 
     def inference(self, model, dataset, feature_name=None, return_repr=True):
         model = model.to(self.device)

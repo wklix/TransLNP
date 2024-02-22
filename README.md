@@ -70,8 +70,7 @@ If you want to use FDS, please follow these steps:
 After the above selections have been made, you can proceed with model training:
 
 ```
-# ./dataset/Random/train.csv is the path of dataset
-$ python train_model.py ./dataset/Random/train.csv
+$ python train_model.py 
 ```
 
 ### Test
@@ -81,6 +80,9 @@ Run `test.py` to observe the predictive results on the test set. We provide mode
 ```
 $ python test.py
 ```
+### Demo
+
+For convenience of execution, we provide `main.ipynb`, which includes code for training, testing, and visualization.
 
 ## Acknowledgement
 
