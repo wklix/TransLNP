@@ -31,8 +31,8 @@ def weighted_mse_loss(df):
     #df = pd.read_csv(csv_file, header=0, usecols=[1])
     labels = df.iloc[:, 1].tolist()
     labels = np.asarray(labels)
-    _mean, _std =labels.mean(), labels.std()
-    labels = labels[(labels> _mean - 3 * _std) & (labels < _mean + 3 * _std)]
+    #_mean, _std =labels.mean(), labels.std()
+    #labels = labels[(labels> _mean - 3 * _std) & (labels < _mean + 3 * _std)]
     #logging.info(f"Using FDS for [{labels.shape}]!")
     # 保存为PNG文件
     max_value = int(max(labels))+1
