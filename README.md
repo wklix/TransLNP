@@ -89,3 +89,22 @@ For convenience of execution, we provide `main.ipynb`, which includes code for t
 - AGILE: [https://github.com/bowang-lab/AGILE](https://github.com/bowang-lab/AGILE)
 - Unimol: [https://github.com/dptech-corp/Uni-Mol/tree/main](https://github.com/dptech-corp/Uni-Mol/tree/main)
 - imbalanced-regression: [https://github.com/YyzHarry/imbalanced-regression](https://github.com/YyzHarry/imbalanced-regression)
+
+If you find our work useful in your research, please cite:
+
+```
+@article{31,
+    author = {Wu, Kun and Yang, Xiulong and Wang, Zixu and Li, Na and Zhang, Jialu and Liu, Lizhuang},
+    title = "{Data-balanced transformer for accelerated ionizable lipid nanoparticles screening in mRNA delivery}",
+    journal = {Briefings in Bioinformatics},
+    volume = {25},
+    number = {3},
+    pages = {bbae186},
+    year = {2024},
+    month = {04},
+    issn = {1477-4054},
+    doi = {10.1093/bib/bbae186},
+    url = {https://doi.org/10.1093/bib/bbae186},
+    eprint = {https://academic.oup.com/bib/article-pdf/25/3/bbae186/57330692/bbae186.pdf},
+}
+```
